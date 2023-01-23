@@ -7,8 +7,9 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 ## Dependencies for Running Locally
 * Ubuntu Linux 20.04    
 * cmake >= 3.5
+  * cmake might be pre installed on a Linux system   
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.2 (Linux)
+* make >= 4.2 
   * Linux: make is installed by default on most Linux distros
 * gcc/g++ >= 9.4
   * Linux: gcc / g++ is installed by default on most Linux distros
@@ -46,15 +47,14 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch tiago_explore explore.launch.py` 
 ### Troubleshooting 
-- Occasionally, gazebo fails. Rerun the the launch script (Don't forget to source or echo when a new terminal is opened) Restarting the computer might help. 
-- ROS2 topic list sometimes helps to kick off the simulaton 
-- VM ressources might be too little for gazebo to properly work?
-- Error message: ROS2 daemon 
-
-
+- Gazebo might occasionally fail, e.g. processes terminate unexpectedly
+- Sometimes, just relaunching the application works 
+- Gazebo is especially prone to fail when it runs on a VMware
+- For that latter case, one has to make sure that the VMware is powerful enough (RAM, Processors, Graphics memory) 
 
 ## Overview Code Structure
-Picture of file structure? 
+
+![Three node structure for solving arbitrary see think act problems](see_think_act_node_architecture.JPG)
 See Think Act offers independent architecture, so the robot policy code does not depend on perception
 The tiago model with its dependencies was taken from the ros2book repository
 The tiago explore project was created with another package for creating custom message types
