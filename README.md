@@ -30,25 +30,26 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 1. `cd && mkdir -p ros2_ws/src && cd ros2_ws/src`
 2. `git clone https://github.com/dschmoeller/ROS2TiagoCapstoneProject.git`  
 3. `vcs import . < ROS2TiagoCapstoneProject/third_parties.repos`
-4. `sudo rosdep init`
-5. `rosdep update`
-6. `cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -r -y`
+4. `sudo rosdep init && rosdep update`
+5. `cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -r -y`
 ### Build the project 
 1. `cd ~/ros2_ws`
 2. `colcon build --symlink-install`
 ### Run tiago simulation environment (in gazebo)  
-1. Open new terminal (Terminal 1) 
+1. Open a new terminal (Terminal 1) 
 2. `source /opt/ros/foxy/setup.bash`
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch br2_tiago sim.launch.py` 
 ### Run tiago explore code   
-1. Open new terminal (Terminal 2) 
+1. Open a new terminal (Terminal 2) 
 2. `source /opt/ros/foxy/setup.bash`
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch tiago_explore explore.launch.py` 
 ### Troubleshooting 
 - Occasionally, gazebo fails. Rerun the the launch script (Don't forget to source or echo when a new terminal is opened) Restarting the computer might help. 
 - ROS2 topic list sometimes helps to kick off the simulaton 
+- VM ressources might be too little for gazebo to properly work?
+- Error message: ROS2 daemon 
 
 
 
