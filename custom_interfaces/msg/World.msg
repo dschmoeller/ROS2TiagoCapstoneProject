@@ -1,0 +1,3 @@
+float32 laser_distance_center
+float32 laser_distance_left
+float32 laser_distance_right
