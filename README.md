@@ -26,8 +26,8 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 2. `sudo apt upgrade`
 3. `sudo apt install ros-foxy-desktop`
 4. `sudo apt install ros-dev-tools`
-5. Activate ROS2 Foxy by executing: `source /opt/ros/foxy/setup.bash`
-6. Optional: Activate the ROS2 environment by default, whenever a new terminal is opened:    
+5. Activate ROS2 Foxy: `source /opt/ros/foxy/setup.bash`
+6. Optional: Default activation whenever a new terminal is opened:    
    `echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc`  
 ### Create ROS2 environment (in home directory), clone Github repo and import dependencies
 1. `cd && mkdir -p ros2_ws/src && cd ros2_ws/src`
@@ -60,7 +60,23 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 
 ## Overview Code Structure
 ![Three node structure for solving arbitrary see think act problems](see_think_act_node_architecture.JPG)
-The purpose of this project was to create a starting point for more sophisticated robot applications. The above picture shows the implemented ROS architecture, comprising the three nodes See, Think and Act. This architecture enables a separation of concern, such that the robot's perception does not depend on the its decision making and so forth. This means, that if one desires to change the robot's decision making policy, code only has to be changed within the Think module. Further, one could more easily exchange one of these three nodes by other implementations. It only has to be guaranteed that the nodes adhere to the respective interfaces (i.e. the ROS topics). The publish/subscribe paradigm has been implemented for internal node communication. The See node listens to any laser sensor information and stores the respective messages internally. It extracts relevant information, which is three distance measurements, in front of the robot and on its left and right side. These three distance values are stored and published in a dedicated world_model message. Notice how one could easily extend the robot's world representation by connecting additional sensor modalities. Further, notice how the See node uses an internal timer to publish its information. This has been done in order to disconect the See node from the external laser signal publish frequency. The Think node subscribes to a world_model and uses this information for the robot's decision making. The implemented policy is very simple, the robot always turns right if there are any obstacles close in front of it or on its left. The Act node serves as driver and translates high level robot commands into actual executable format, such as translational or rotational velocity information. The tiago robot model (in the gazebo simulation environment) has been connected to the above ROS nodes. A launch file has been implemented in order to start up all three nodes with their corresponding configurations compfortably with only one command. All three nodes are created and executed from the main file. Further, notice how remapping has been utilized to connect the tiago specific topics with the See node and the Think node.       
+The purpose of this project was to create a starting point for more sophisticated robot applications. The above picture shows the implemented ROS architecture, comprising the three nodes See, Think and Act. This architecture enables a separation of concern, such that the robot's perception does not depend on the its decision making and so forth. This means, that if one desires to change the robot's decision making policy, code only has to be changed within the Think module. Further, one could more easily exchange one of these three nodes by other implementations. It only has to be guaranteed that the nodes adhere to the respective interfaces (i.e. the ROS topics). The publish/subscribe paradigm has been implemented for node communication. The See node listens to any laser sensor information and stores the respective messages internally. It extracts relevant information, which is three distance measurements, in front of the robot and on its left and right side. These three distance values are stored and published in a dedicated world model message. Notice how one could easily extend the robot's world representation by connecting additional sensor modalities. Further, notice how the See node uses an internal timer to publish its information. This has been done in order to disconect the See node from the external laser signal publish frequency. The Think node subscribes to a world model and uses this information for the robot's decision making. The implemented policy is very simple, the robot always turns right if there are any obstacles close in front of it or on its left. The Act node serves as driver and translates high level robot commands into actual executable format, such as translational or rotational velocity information. The tiago robot model (in the gazebo simulation environment) has been connected to the above ROS nodes. A launch file has been implemented in order to start up all three nodes with their corresponding configurations compfortably with only one command. All three nodes are created and executed from the main file. Further, notice how remapping has been utilized to connect the tiago specific topics with the See node and the Think node.       
 
 
 ## Necessary Rubric Points  
+### Rubric Point 1: The project demonstrates an understanding of C++ functions and control structures:   
+  - if/else control structures have been used, e.g. in the Think::think_policy() method
+  - ROS implicitly forces code to be organized into functions, e.g. the callback functions for publish/subscribe communication   
+### Rubric Point 2: The project uses Object Oriented Programming techniques:   
+  - Three classes (See, Think, Act) have been implented with corresponding attributes and methods   
+### Rubric Point 3: Classes use appropriate access specifiers for class members:   
+  - All class data members are explicitly specified as public, protected, or private in See.hpp, Think.hpp and Act.hpp
+### Rubric Point 4: The project uses move semantics to move data, instead of copying it, where possible:   
+  - The See::lidar_callback() method uses move semantics in order to pass incoming laser scan messages into a unique pointer, rather than making an expensive copy 
+### Rubric Point 5: The project uses smart pointers instead of raw pointers:   
+  - The publisher, subscriber and other attributes in See.hpp are implemented as shared and unique pointers
+
+
+  
+     
+
