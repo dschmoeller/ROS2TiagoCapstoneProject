@@ -27,15 +27,19 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 2. `sudo apt upgrade`
 3. `sudo apt install ros-foxy-desktop`
 4. `sudo apt install ros-dev-tools`
+5. Activate ROS2 Foxy by executing: `source /opt/ros/foxy/setup.bash`
+6. Optional: Activate the ROS2 environment by default, whenever a new terminal is opened: `echo "source /opt/ros/foxy/setup.bash" >> /.bashrc`  
 ### Create ROS2 environment (in home directory), clone Github repo and import dependencies
 1. `cd && mkdir -p ros2_ws/src && cd ros2_ws/src`
 2. `git clone https://github.com/dschmoeller/ROS2TiagoCapstoneProject.git`  
 3. `vcs import . < ROS2TiagoCapstoneProject/third_parties.repos`
 4. `sudo rosdep init && rosdep update`
-5. `cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -r -y`
+5. `cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -r -y` 
 ### Build the project 
 1. `cd ~/ros2_ws`
 2. `colcon build --symlink-install`
+3. Optional: Activate the workspace as overlay by default, whenever a new terminal is opened:    
+   `echo "source ~/ros2_ws/install/setup.bash" >> /.bashrc`  
 ### Run tiago simulation environment (in gazebo)  
 1. Open a new terminal (Terminal 1) 
 2. `source /opt/ros/foxy/setup.bash`
@@ -48,6 +52,7 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 4. `ros2 launch tiago_explore explore.launch.py` 
 ### Troubleshooting 
 - Gazebo might occasionally fail, e.g. processes terminate unexpectedly
+- Check terminal output for any killed processes
 - Sometimes, just relaunching the application works 
 - Gazebo is especially prone to fail when it runs on a VMware
 - For that latter case, one has to make sure that the VMware is powerful enough (RAM, Processors, Graphics memory) 
