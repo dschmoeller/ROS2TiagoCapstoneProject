@@ -52,9 +52,10 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch tiago_explore explore.launch.py` 
 ### Troubleshooting
-- The ROS2 humble installation might fail, if Ubuntu 22.04 LTS hasn't been updated 
+- The ROS2 humble installation might fail, if Ubuntu 22.04 LTS hasn't been updated. 
 - Due to early updates in Ubuntu 22.04 it is important that systemd and udev-related packages are updated before installing ROS 2. The installation of ROS 2’s dependencies on a freshly installed system without upgrading can trigger the removal of critical system packages. ([See official documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html))
-- The colcon build might terminate with some warnings
+- The colcon build might terminate with some warnings.
+- When launching gazebo for the first time, it might take some additional time before everything is properly set up. It can be required to relaunch gazebo, if the communication to the explore nodes doesn't work. 
 
 
 
