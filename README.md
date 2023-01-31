@@ -4,7 +4,7 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 
 
 ## Dependencies for Running Locally
-* Ubuntu Linux 20.04    
+* Ubuntu Linux 22.04 LTS    
 * cmake >= 3.5
   * cmake might be pre installed on a Linux system   
   * All OSes: [click here for installation instructions](https://cmake.org/install/)
@@ -21,14 +21,15 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
 3. `sudo apt update && sudo apt install curl`
 4. `sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg`
 5. `echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null`
-### Install ROS2 Foxy and corresponding development tools
+### Install ROS2 Humble and corresponding development tools (see [this link](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) for the official documentation) 
 1. `sudo apt update`
 2. `sudo apt upgrade`
-3. `sudo apt install ros-foxy-desktop`
-4. `sudo apt install ros-dev-tools`
-5. Activate ROS2 Foxy: `source /opt/ros/foxy/setup.bash`
-6. Optional: Default activation whenever a new terminal is opened:    
-   `echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc`  
+3. Please make sure that Ubuntu 22.04 LTS has been updated prior to the ROS2 humble installation (see troubleshooting section down below) 
+4. `sudo apt install ros-humble-desktop`
+5. `sudo apt install ros-dev-tools`
+6. Activate ROS2 Foxy: `source /opt/ros/humble/setup.bash`
+7. Optional: Default activation whenever a new terminal is opened:    
+   `echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc`  
 ### Create ROS2 environment (in home directory), clone Github repo and import dependencies
 1. `cd && mkdir -p ros2_ws/src && cd ros2_ws/src`
 2. `git clone https://github.com/dschmoeller/ROS2TiagoCapstoneProject.git`  
@@ -42,20 +43,19 @@ This repository contains the submission code for the C++ Nanodegree Captstone pr
    `echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc`  
 ### Run tiago simulation environment (in gazebo)  
 1. Open a new terminal (Terminal 1) 
-2. `source /opt/ros/foxy/setup.bash`
+2. `source /opt/ros/humble/setup.bash`
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch br2_tiago sim.launch.py` 
 ### Run tiago explore code   
 1. Open a new terminal (Terminal 2) 
-2. `source /opt/ros/foxy/setup.bash`
+2. `source /opt/ros/humble/setup.bash`
 3. `source ~/ros2_ws/install/setup.bash`
 4. `ros2 launch tiago_explore explore.launch.py` 
-### Troubleshooting 
-- Gazebo might occasionally fail, e.g. processes terminate unexpectedly
-- Check the terminal output for any killed processes
-- Sometimes, just relaunching the application works 
-- Gazebo is especially prone to fail when it runs on a VMware
-- For that latter case, one has to make sure that the VMware is powerful enough (RAM, Processors, Graphics memory) 
+### Troubleshooting
+- The ROS2 humble installation might fail, if Ubuntu 22.04 LTS hasn't been updated 
+- Due to early updates in Ubuntu 22.04 it is important that systemd and udev-related packages are updated before installing ROS 2. The installation of ROS 2’s dependencies on a freshly installed system without upgrading can trigger the removal of critical system packages. ([See official documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html))
+- The colcon build might terminate with some warnings
+
 
 
 ## Overview Code Structure
